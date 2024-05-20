@@ -33,4 +33,27 @@
     -     try_files $uri $uri/ =404;
     -   }
     -}
-    
+  3. Buat direktori root untuk situs Anda dan tambahkan file index.html:
+    - sudo mkdir -p /var/www/mywebsite
+    - sudo nano /var/www/mywebsite/index.html
+    //Tambahkan konten HTML dasar untuk menguji:
+    - <html>
+    - <head>
+    -   <title>Welcome to MyWebsite</title>
+    - </head>
+    - <body>
+    -   <h1>Success! The Nginx server block is working!</h1>
+    - </body>
+    - </html>
+  4. Aktifkan konfigurasi situs dengan membuat symlink di sites-enabled:
+    - sudo ln -s /etc/nginx/sites-available/mywebsite /etc/nginx/sites-enabled/
+  5. Uji konfigurasi Nginx untuk memastikan tidak ada kesalahan sintaks:
+    - sudo nginx -t
+  6. Jika uji konfigurasi berhasil, muat ulang Nginx untuk menerapkan perubahan:
+    - sudo systemctl reload nginx
+
+7. Tambahkan Domain ke /etc/hosts (Opsional)
+  - sudo nano /etc/hosts
+  - // tambahkan baris nama domain 
+  - 127.0.0.1 mywebsite.com
+8. Selesai. coba akses http://mydomain.com
