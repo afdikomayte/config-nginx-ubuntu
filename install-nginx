@@ -1,0 +1,36 @@
+#Intall Nginx
+1. Update Paket Ubuntu
+- sudo apt update
+- sudo apt upgrade -y
+
+2. Instal Nginx
+- sudo apt install nginx -y
+
+3. Memulai dan Mengaktifkan Nginx
+- sudo systemctl start nginx
+- sudo systemctl enable nginx
+
+4. Verifikasi Instalasi Nginx
+- sudo systemctl status nginx
+
+5. Konfigurasi Firewall (Opsional)
+- sudo ufw allow 'Nginx Full'
+
+6. Konfigurasi Awal Nginx
+//Nginx menyimpan file konfigurasi utama di /etc/nginx/nginx.conf. Anda dapat membuka dan
+//mengedit file ini sesuai kebutuhan. Namun, biasanya Anda akan bekerja dengan file konfigurasi situs
+//di /etc/nginx/sites-available/ dan membuat symlink di /etc/nginx/sites-enabled/.
+- Membuat Konfigurasi Situs Baru
+  1. Buat file konfigurasi baru di direktori sites-available:
+    - sudo nano /etc/nginx/sites-available/mywebsite
+  2. Tambahkan konfigurasi dasar berikut (sesuaikan dengan kebutuhan Anda):
+    - server {
+    -   listen 80;
+    -   server_name mywebsite.com www.mywebsite.com;
+    -   root /var/www/mywebsite;
+    -   index index.html index.htm index.nginx-debian.html;
+    -   location / {
+    -     try_files $uri $uri/ =404;
+    -   }
+    -}
+    
